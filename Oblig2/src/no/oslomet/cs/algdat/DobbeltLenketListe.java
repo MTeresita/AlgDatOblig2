@@ -58,6 +58,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
 
+        // TODO: lage en forløkke som bygger opp pekerne til nodene
+        /*  Tanke: "bygges" ut fra hode slik at hale kommer lenger og lenger til høyre når det legges til
+            pekere - hode.neste.
+            hode.forrige og hale.neste skal være null.
+            hode skal peke på den første i listen og hale til den siste
+         */
+
         hode = hale = new Node(null); // oppretter en midlertig node.
 
         //TODO trenger en for løkke til som skal sjekke neste og forrige er satt riktig. 
