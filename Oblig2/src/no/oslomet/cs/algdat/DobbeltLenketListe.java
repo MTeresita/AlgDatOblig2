@@ -45,11 +45,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new NotImplementedException();
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new NotImplementedException();
+        //Hvis a er 0, så skal det kastet en NullPointerException
+        Objects.requireNonNull(a,"Tabellen a er null!");
+        //TODO: trenger vi å ta inn lengden på arrayet?
+
+        for(T verdi : a){
+            if(verdi != null){
+                a[antall++] = verdi; // hopper over nullverdier.
+            }
+        }
+
+        hode = hale = new Node(null); // oppretter en midlertig node.
+
+        //TODO trenger en for løkke til som skal sjekke neste og forrige er satt riktig. 
+
+        if (antall == 0){
+            hale = hode;
+        }
+
+
+
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -58,12 +76,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        throw new NotImplementedException();
+       return antall;
     }
-
     @Override
     public boolean tom() {
-        throw new NotImplementedException();
+        if (antall == 0 ){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     @Override
