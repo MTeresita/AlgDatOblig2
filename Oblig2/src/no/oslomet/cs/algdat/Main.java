@@ -7,8 +7,9 @@ public class Main {
 
         System.out.println("-------------------------");
 
-        String[] s = {"Ole", null, "Per", "Kari",null};
+        String[] s = {"Ole", null, "Per", "Kari", null};
         Liste<String> liste1 = new DobbeltLenketListe<>(s);
         System.out.println(liste1.antall() + " " + liste1.tom());
+        //halla
     }
 }
