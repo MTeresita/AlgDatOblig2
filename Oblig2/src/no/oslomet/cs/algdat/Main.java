@@ -11,5 +11,8 @@ public class Main {
         Liste<String> liste1 = new DobbeltLenketListe<>(s);
         System.out.println(liste1.antall() + " " + liste1.tom());
         //halla
+
+        liste1.toString();
+        System.out.println(liste1);
     }
 }
