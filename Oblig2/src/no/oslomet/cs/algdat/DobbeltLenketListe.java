@@ -118,7 +118,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new NotImplementedException();
+        return indeksTil(verdi) != -1;
+
     }
 
     @Override
@@ -157,7 +158,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new NotImplementedException();
+        Node<T> node = hode;
+
+        boolean funnet = false; //  sjekker om den er funnet
+        int indeks = 0;
+
+        while (node != null) { // så lenge node ikke er null, skal while løkken kjøre
+
+            //FIXME node.verdi er en referanse, mens verdi er det som tas inn. Derfor klarer den ikke å sjekke de mot hverandre
+            //FIXME ser videre på den i morgen.
+            if (node.neste.verdi.equals(verdi)) { // hvis node.neste.verdi er det samme som verdien som tas inn
+                funnet = true; // setter denne variabelen til true
+                break;
+            }
+            node = node.neste; // setter pekeren til neste node.
+            indeks++; // og øker indeksen
+        }
+
+        if(funnet == true){ // er den funnet, returner indeks - som vil si, fordi den økes kun når den er funnet, dermed får vi 1 tilbake
+            //System.out.println(verdi + " eksiterer i listen");
+            return indeks;
+
+
+        }
+        else {
+            //System.out.println(verdi + " eksiterer ikke listen");
+            //hvis ikke returner -1, som vil si at den ikke eksistere
+            return -1;
+        }
+
+        //TODO jeg er super dårlig på å forklare.. men spørr meg i morgen hvis det er noe haha!! - Maria
+
     }
 
     @Override

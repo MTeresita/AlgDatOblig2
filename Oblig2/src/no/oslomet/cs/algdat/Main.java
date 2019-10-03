@@ -25,10 +25,17 @@ public class Main {
                 + " " + l3.omvendtString());
 
         //Oppgave 3
-        Integer[] poop= {3};
+        Integer[] poop= {3,4,6,7,8,9,0,1,2,3,4};
         Liste<Integer> liste2 = new DobbeltLenketListe<>(poop);
         System.out.println("Oppgave 3:");
-        int verdi = liste2.hent(0);
-        System.out.println("Verdi av indeks 0 : "+verdi);
+//        int verdi = liste2.hent(0);
+  //      System.out.println("Verdi av indeks 0 : "+verdi);
+
+        //Oppgave 4
+        //FIXME denne sjekken funker i main, men ikke testen. Skal ta en titt på den i morgen
+        String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
+        DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
+        System.out.println(pokedex.indeksTil("Arcanine"));
+        System.out.println(liste2.indeksTil(4));
     }
 }
