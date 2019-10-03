@@ -56,12 +56,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         hode = hale = new Node<>(null); // oppretter en midlertig node.
 
-        for(T verdi : a){
-            if(verdi != null) {
+        for (T verdi : a) {
+            if (verdi != null) {
                 hale = hale.neste = new Node<>(verdi, hale, null); // ny verdi legges bakerst
                 antall++;
             }
-            if(antall == 0){
+            if (tom()) {
                 hode = hale = new Node<>(null); // tom liste
             }
         }
@@ -162,16 +162,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
         Node<T> node = hode;
-        System.out.println(node.verdi);  // 1
-
-        //node = node.neste;  // tom
 
         while (node != null) {
-            if (node.neste == null) {
-                sb.append(node.verdi);
+            if(node.verdi == null){
+                System.out.println("Første node er tom.");
             }
             else {
-                sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+                if (node.neste == null) {
+                    sb.append(node.verdi);
+                } else {
+                    sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+                }
             }
             node = node.neste;
         }
