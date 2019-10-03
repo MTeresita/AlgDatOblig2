@@ -23,5 +23,12 @@ public class Main {
 
         System.out.println("Omvendt toString: " + l1.omvendtString() + " " + l2.omvendtString()
                 + " " + l3.omvendtString());
+
+        //Oppgave 3
+        Integer[] poop= {3};
+        Liste<Integer> liste2 = new DobbeltLenketListe<>(poop);
+        System.out.println("Oppgave 3:");
+        int verdi = liste2.hent(0);
+        System.out.println("Verdi av indeks 0 : "+verdi);
     }
 }

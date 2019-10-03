@@ -123,8 +123,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new NotImplementedException();
+        indeksKontroll(indeks,false);
+        return finnNode(indeks).verdi;
     }
+
+    private Node<T> finnNode(int indeks){
+        //Finne noden med den gitte indeksen.
+        int midten = antall / 2;
+        Node<T> p = hode;
+        Node<T> q = hale;
+
+        if(antall == 1){
+            return p; //Kun et element, retrunerer her hodet (kunne vært hale også, men de er jo det samme..)
+        }
+
+        //Hvis indeks er høyere en antall / 2 - så skal man starte fra halen og gå mot venstre, forrige-pekere
+        if(indeks > midten){
+            for(int i = antall-1; i > indeks; i--){
+                q = q.forrige;
+            }
+            return q;
+        }
+
+        //Hvis indeks er mindre en antall / 2 - da skal letingen etter noden starte fra hodet og gå mot høyre, neste-pekere
+        else{
+            for(int i = 0; i < indeks; i++){
+                p = p.neste;
+            }
+            return p;
+        }
+    }
+
 
     @Override
     public int indeksTil(T verdi) {
@@ -133,7 +162,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new NotImplementedException();
+        //Denne skal erstatte verdien på indeks med en ny verdi og returnere det som lå der fra før
+        //Indekskontroll og sjekk av null-verdier
+        //Husk å øke endringer
+
+        Objects.requireNonNull(nyverdi,"Ikke tillatt med nullverdier.");
+        indeksKontroll(indeks, false);
+
+        Node<T> p = finnNode(indeks);
+        T temp = p.verdi;
+        p.verdi = nyverdi;
+        endringer++;
+
+        return temp;
     }
 
     @Override
@@ -165,12 +206,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         while (node != null) {
             if(node.verdi == null){
-                System.out.println("Første node er tom.");
+                System.out.println("Første node i listen er tom.");
             }
             else {
                 if (node.neste == null) {
                     sb.append(node.verdi);
-                } else {
+                }
+                else {
                     sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
                 }
             }
@@ -193,15 +235,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
         Node<T> node = hale;
-        //sb.append(node.verdi);
-        //node = node.forrige;
 
         while(node != null){
-            if(node.forrige == null){
-                sb.append(node.verdi);
+            if(node.verdi == null){
+                System.out.println("Første node i listen er tom.");
             }
             else {
-                sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+                if (node.forrige == null || node.forrige.verdi == null) {
+                    sb.append(node.verdi);
+                }
+                else {
+                    sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+                }
             }
             node = node.forrige;
         }
