@@ -53,8 +53,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {
         //Hvis a er 0, så skal det kastet en NullPointerException
         Objects.requireNonNull(a,"Tabellen a er null!");
-
-
         hode = hale = new Node<>(null); // oppretter en midlertig node.
 
             for(T verdi : a){
@@ -142,8 +140,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         StringBuilder sb = new StringBuilder();
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
-        Node node = hode;
-
+        Node<T> node = hode;
         sb.append(node.verdi);
         node = node.neste;
 
@@ -159,7 +156,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     //Oppg 2a)
     public String omvendtString() {
-        Objects.requireNonNull(hale);
         if(tom()){
             return "[]";
         }
@@ -167,11 +163,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         StringBuilder sb = new StringBuilder();
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
-        Node node = hale;
+        Node<T> node = hale;
         sb.append(node.verdi);
         node = node.forrige;
 
-        while(node != null){
+        while(node.forrige != null){
             sb.append(", ").append(' ').append(node.verdi); //legger videre til de neste elementene.
             node = node.forrige;
         }
