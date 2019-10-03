@@ -52,18 +52,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
         //Hvis a er 0, så skal det kastet en NullPointerException
-        Objects.requireNonNull(a,"Tabellen a er null!");
-       hode = hale = new Node<>(null); // oppretter en midlertig node.
+        //Objects.requireNonNull(a,"Tabellen a er null!");
 
-            for(T verdi : a){
-                if(verdi != null) {
-                    hale = hale.neste = new Node<>(verdi,hale,null); // ny verdi legges bakerst
-                    antall++;
-                }
-                if(antall == 0){
-                    hode = hale = new Node<>(null); // tom liste
-                }
+        hode = hale = new Node<>(null); // oppretter en midlertig node.
+
+        for(T verdi : a){
+            if(verdi != null) {
+                hale = hale.neste = new Node<>(verdi, hale, null); // ny verdi legges bakerst
+                antall++;
             }
+            if(antall == 0){
+                hode = hale = new Node<>(null); // tom liste
+            }
+        }
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -86,7 +87,28 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new NotImplementedException();
+        if(verdi == null){ //Sjekker etter null-verdier
+            Objects.requireNonNull(verdi, "Kan ikke legge til tomme verdier.");
+            return false;
+        }
+
+        Node node = new Node(verdi);
+
+        //Tilfelle 1: listen er tom
+        if(tom()){
+            hode = hale = node;
+        }
+
+        //Tilfelle 2: listen er ikke tom
+        else{
+            node.forrige = hale;
+            hale.neste = node;
+            hale = node;
+        }
+        antall++;
+        endringer++;
+
+        return true;
     }
 
     @Override
@@ -136,23 +158,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return "[]";
         }
 
-
         StringBuilder sb = new StringBuilder();
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
         Node<T> node = hode;
+        System.out.println(node.verdi);  // 1
 
-            node = node.neste;
+        //node = node.neste;  // tom
 
-            while (node != null) {
-                if(node.neste == null){
-                    sb.append(node.verdi);
-                }
-                else {
-                    sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
-                }
-                node = node.neste;
+        while (node != null) {
+            if (node.neste == null) {
+                sb.append(node.verdi);
             }
+            else {
+                sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+            }
+            node = node.neste;
+        }
+
         sb.append("]"); //avslutter Stringen med en klammeparentes.
 
         return sb.toString();//returnerer toStringen til StringBuilder'en.
@@ -169,11 +192,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
 
         Node<T> node = hale;
-        sb.append(node.verdi);
-        node = node.forrige;
+        //sb.append(node.verdi);
+        //node = node.forrige;
 
-        while(node.forrige != null){
-            sb.append(", ").append(node.verdi); //legger videre til de neste elementene.
+        while(node != null){
+            if(node.forrige == null){
+                sb.append(node.verdi);
+            }
+            else {
+                sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
+            }
             node = node.forrige;
         }
         sb.append("]"); //avslutter Stringen med en klammeparentes.
