@@ -163,7 +163,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         boolean funnet = false; //  sjekker om den er funnet
         int indeks = 0;
 
-        while (node != null) { // så lenge node ikke er null, skal while løkken kjøre
+        while (node.verdi != null) { // så lenge node ikke er null, skal while løkken kjøre
 
             //FIXME node.verdi er en referanse, mens verdi er det som tas inn. Derfor klarer den ikke å sjekke de mot hverandre
             //FIXME ser videre på den i morgen.
@@ -176,13 +176,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         if(funnet == true){ // er den funnet, returner indeks - som vil si, fordi den økes kun når den er funnet, dermed får vi 1 tilbake
-            //System.out.println(verdi + " eksiterer i listen");
+            System.out.println(verdi + " eksiterer i listen");
             return indeks;
 
 
         }
         else {
-            //System.out.println(verdi + " eksiterer ikke listen");
+            System.out.println(verdi + " eksiterer ikke listen");
             //hvis ikke returner -1, som vil si at den ikke eksistere
             return -1;
         }
