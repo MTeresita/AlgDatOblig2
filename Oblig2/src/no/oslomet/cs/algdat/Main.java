@@ -32,7 +32,7 @@ public class Main {
   //      System.out.println("Verdi av indeks 0 : "+verdi);
 
         //Oppgave 4
-        //FIXME denne sjekken funker i main, men ikke testen. Skal ta en titt på den i morgen
+        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
         String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
         DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
         System.out.println(pokedex.indeksTil("Arcanine"));
