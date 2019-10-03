@@ -140,13 +140,46 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new NotImplementedException();
     }
 
+    //Oppg 2a)
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        if(antall == 0){
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(hode);//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hode.neste;
+
+        while(node.neste != null){
+            sb.append(", ").append(node); //legger videre til de neste elementene.
+            node = node.neste;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
+
     }
 
+    //Oppg 2a)
     public String omvendtString() {
-        throw new NotImplementedException();
+        if(antall == 0){
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(hale);//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hale.forrige;
+
+        while(node.forrige != null){
+            sb.append(", ").append(node); //legger videre til de neste elementene.
+            node = node.forrige;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
     }
 
     @Override
