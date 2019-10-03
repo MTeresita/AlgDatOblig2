@@ -54,6 +54,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Hvis a er 0, så skal det kastet en NullPointerException
         Objects.requireNonNull(a,"Tabellen a er null!");
 
+
         hode = hale = new Node<>(null); // oppretter en midlertig node.
 
             for(T verdi : a){
@@ -61,7 +62,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     hale = hale.neste = new Node<>(verdi,hale,null); // ny verdi legges bakerst
                     antall++;
                 }
-                if(tom()){
+                if(antall == 0){
                     hode = hale = new Node<>(null); // tom liste
                 }
             }
@@ -130,13 +131,53 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new NotImplementedException();
     }
 
+    //Oppg 2a)
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        if(tom()){
+            return "[]";
+        }
+
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hode;
+
+        sb.append(node.verdi);
+        node = node.neste;
+
+        while(node != null){
+            sb.append(", ").append(' ').append(node.verdi); //legger videre til de neste elementene.
+            node = node.neste;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
+
     }
 
+    //Oppg 2a)
     public String omvendtString() {
-        throw new NotImplementedException();
+        Objects.requireNonNull(hale);
+        if(tom()){
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hale;
+        sb.append(node.verdi);
+        node = node.forrige;
+
+        while(node != null){
+            sb.append(", ").append(' ').append(node.verdi); //legger videre til de neste elementene.
+            node = node.forrige;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
     }
 
     @Override
