@@ -45,18 +45,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
+        hode = hale = null;
+        antall = 0;
+        endringer = 0; 
     }
 
     public DobbeltLenketListe(T[] a) {
         //Hvis a er 0, så skal det kastet en NullPointerException
         Objects.requireNonNull(a,"Tabellen a er null!");
         //TODO: trenger vi å ta inn lengden på arrayet?
-
+        /*
         for(T verdi : a){
             if(verdi != null){
                 a[antall++] = verdi; // hopper over nullverdier.
             }
-        }
+        }*/
 
         // TODO: lage en forløkke som bygger opp pekerne til nodene
         /*  Tanke: "bygges" ut fra hode slik at hale kommer lenger og lenger til høyre når det legges til
@@ -65,12 +68,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode skal peke på den første i listen og hale til den siste
          */
 
-        hode = hale = new Node(null); // oppretter en midlertig node.
+        hode = hale = new Node<>(null); // oppretter en midlertig node.
 
-        //TODO trenger en for løkke til som skal sjekke neste og forrige er satt riktig. 
-
-        if (antall == 0){
-            hale = hode;
+        // Legger inn n node i slutten av listen
+        for(T verdi : a){ // for(verdi : a){
+            // hvis forskjellig fra null så nr 2 ok øke antall
+            if(verdi != null) {
+                hale = hale.neste = new Node<>(verdi,hale,null); // ny verdi legges bakerst
+                antall++;
+            }
+            if(antall == 0){
+                hode = hale = new Node<>(null); // tom liste
+            }
         }
 
 
@@ -140,13 +149,51 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new NotImplementedException();
     }
 
+    //Oppg 2a)
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        if(tom()){
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hode;
+
+        sb.append(node.verdi);
+        node = node.neste;
+
+        while(node != null){
+            sb.append(", ").append(' ').append(node.verdi); //legger videre til de neste elementene.
+            node = node.neste;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
+
     }
 
+    //Oppg 2a)
     public String omvendtString() {
-        throw new NotImplementedException();
+        if(tom()){
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");//starter Stringen med klammeparentes og legger til første elementet i lista.
+
+        Node node = hale;
+        sb.append(node.verdi);
+        node = node.forrige;
+
+        while(node!= null){
+            sb.append(", ").append(' ').append(node.verdi); //legger videre til de neste elementene.
+            node = node.neste;
+        }
+        sb.append("]"); //avslutter Stringen med en klammeparentes.
+
+        return sb.toString();//returnerer toStringen til StringBuilder'en.
     }
 
     @Override
