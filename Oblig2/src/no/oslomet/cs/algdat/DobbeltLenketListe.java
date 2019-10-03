@@ -45,36 +45,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
+        hode = hale = null;
+        antall = 0;
+        endringer = 0;
     }
 
     public DobbeltLenketListe(T[] a) {
         //Hvis a er 0, så skal det kastet en NullPointerException
         Objects.requireNonNull(a,"Tabellen a er null!");
-        //TODO: trenger vi å ta inn lengden på arrayet?
 
-        for(T verdi : a){
-            if(verdi != null){
-                a[antall++] = verdi; // hopper over nullverdier.
+        hode = hale = new Node<>(null); // oppretter en midlertig node.
+
+            for(T verdi : a){
+                if(verdi != null) {
+                    hale = hale.neste = new Node<>(verdi,hale,null); // ny verdi legges bakerst
+                    antall++;
+                }
+                if(tom()){
+                    hode = hale = new Node<>(null); // tom liste
+                }
             }
-        }
-
-        // TODO: lage en forløkke som bygger opp pekerne til nodene
-        /*  Tanke: "bygges" ut fra hode slik at hale kommer lenger og lenger til høyre når det legges til
-            pekere - hode.neste.
-            hode.forrige og hale.neste skal være null.
-            hode skal peke på den første i listen og hale til den siste
-         */
-
-        hode = hale = new Node(null); // oppretter en midlertig node.
-
-        //TODO trenger en for løkke til som skal sjekke neste og forrige er satt riktig. 
-
-        if (antall == 0){
-            hale = hode;
-        }
-
-
-
     }
 
     public Liste<T> subliste(int fra, int til){
