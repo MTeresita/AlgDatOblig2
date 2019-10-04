@@ -271,7 +271,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // nodeverdien og alle nodens pekere. Til slutt settes både ​hode​ og ​hale​ til null, ​antall​
         // til 0 og ​endringer​ økes. Hvis du er i tvil om hva som det bes om her, kan du slå opp
         // i kildekodenformetoden​clear(​)​iklassen​LinkedList​iJava.
-
         for(int i = 0; i < antall; i++){
             temp = node.neste;
             node.verdi = null;
@@ -282,6 +281,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         hode = hale = null;
         antall = 0;
         endringer++;
+
+        //2. måte: Lag en løkke som inneholder metodekallet ​fjern(​0) ​(den første noden fjernes) og
+        // som går inntil listen er tom.
+        for(int j = 0; j < antall; j++){
+            fjern(0);
+        }
+
+        //TODO : Teste hvilken som er raskest når fjern() er gjort ferdig.
     }
 
     //Oppg 2a)
