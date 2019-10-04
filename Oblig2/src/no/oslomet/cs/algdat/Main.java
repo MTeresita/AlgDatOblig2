@@ -24,18 +24,33 @@ public class Main {
         System.out.println("Omvendt toString: " + l1.omvendtString() + " " + l2.omvendtString()
                 + " " + l3.omvendtString());
 
+        //oppgave 2b
+        System.out.println("------------------");
+        System.out.println("Oppgave 2 b)");
+        DobbeltLenketListe<Integer> liste2 = new DobbeltLenketListe<>();
+        System.out.println(liste2.toString() + " " + liste2.omvendtString());
+
+        for(int i = 1; i <= 3; i++){
+            liste2.leggInn(i);
+            System.out.println(liste2.toString() + " " + liste2.omvendtString());
+        }
+
+
         //Oppgave 3
+        System.out.println("------------------");
         Integer[] poop= {3,4,6,7,8,9,0,1,2,3,4};
-        Liste<Integer> liste2 = new DobbeltLenketListe<>(poop);
+        Liste<Integer> liste3 = new DobbeltLenketListe<>(poop);
         System.out.println("Oppgave 3:");
-//        int verdi = liste2.hent(0);
+//        int verdi = liste3.hent(0);
   //      System.out.println("Verdi av indeks 0 : "+verdi);
 
         //Oppgave 4
+        System.out.println("------------------");
+        System.out.println("Oppgave 4");
         //FIXME fikk den til å funke i testen .. tester jeg den feil her?
         String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
         DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
         System.out.println(pokedex.indeksTil("Arcanine"));
-        System.out.println(liste2.indeksTil(4));
+        System.out.println(liste3.indeksTil(4));
     }
 }
