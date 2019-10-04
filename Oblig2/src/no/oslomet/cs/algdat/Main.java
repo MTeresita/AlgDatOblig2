@@ -2,7 +2,7 @@ package no.oslomet.cs.algdat;
 
 public class Main {
     public static void main(String[] args) {
-        Liste<String> liste = new DobbeltLenketListe<>();
+     /*   Liste<String> liste = new DobbeltLenketListe<>();
         System.out.println(liste.antall() + " " + liste.tom()); // Utskrift: 0 true
 
         System.out.println("-------------------------");
@@ -45,12 +45,58 @@ public class Main {
   //      System.out.println("Verdi av indeks 0 : "+verdi);
 
         //Oppgave 4
-        System.out.println("------------------");
-        System.out.println("Oppgave 4");
-        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
-        String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
-        DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
-        System.out.println(pokedex.indeksTil("Arcanine"));
-        System.out.println(liste3.indeksTil(4));
+//        System.out.println("------------------");
+//        System.out.println("Oppgave 4");
+//        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
+//        String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
+//        DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
+//        System.out.println(pokedex.indeksTil("Arcanine"));
+//        System.out.println(liste3.indeksTil(4));
+
+        //Oppgave 6
+       System.out.println("------------------");
+        System.out.println("Oppgave 6");
+
+        String[] hei = {};
+        DobbeltLenketListe<String> halla = new DobbeltLenketListe<>(hei);
+        System.out.println("Før fjerning:");
+        System.out.println(halla.toString());
+        System.out.println(halla.omvendtString());
+        halla.fjern(0);
+        System.out.println("Etter fjerning:");
+        System.out.println(halla.toString());
+        System.out.println(halla.omvendtString());*/
+
+
+        //Oppgave 6:
+        DobbeltLenketListe<String> liste = new DobbeltLenketListe<>();
+        liste.leggInn("A");
+        liste.leggInn("B");
+
+        try {
+            liste.fjern(1);
+        } catch (Exception e) {
+            System.out.println("Oppgave 6za: Her kastes det et unntak, men det skal ikke skje!!");
+        }
+
+        if (!liste.toString().equals("[A]")) {
+            System.out.println
+                    ("Oppgave 6zb: Her må det være en pekerfeil!");
+        }
+
+        liste.leggInn("B");
+
+        try {
+            liste.fjern("B");
+        } catch (Exception e) {
+            System.out.println
+                    ("Oppgave 6zd: Her kastes det et unntak, men det skal ikke skje!!");
+        }
+
+        if (!liste.toString().equals("[A]")) {
+            System.out.println
+                    ("Oppgave 6ze: Her må det være en pekerfeil!");
+        }
+
     }
 }

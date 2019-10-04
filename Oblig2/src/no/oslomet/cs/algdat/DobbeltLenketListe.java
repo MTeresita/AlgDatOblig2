@@ -181,20 +181,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> q = hale;
 
         if(antall == 1){
-            return p; //Kun et element, retrunerer her hodet (kunne vært hale også, men de er jo det samme..)
+            return p; //Kun et element, returnerer her hodet (kunne vært hale også, men de er jo det samme..)
         }
 
-        //Hvis indeks er høyere en antall / 2 - så skal man starte fra halen og gå mot venstre, forrige-pekere
-        if(indeks > midten){
+        //Hvis indeks er høyere enn midten - så skal man starte fra halen og gå mot venstre, bruke forrige-pekere
+        else if(indeks > midten){
             for(int i = antall-1; i > indeks; i--){
                 q = q.forrige;
             }
             return q;
         }
 
-        //Hvis indeks er mindre en antall / 2 - da skal letingen etter noden starte fra hodet og gå mot høyre, neste-pekere
+        //Hvis indeks er mindre eller lik midten - så skal letingen starte fra hodet og gå mot høyre, bruke neste-pekere
         else{
-            for(int i = 0; i < indeks; i++){
+            for(int i = 0; i <= indeks; i++){
                 p = p.neste;
             }
             return p;
@@ -252,14 +252,113 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return temp;
     }
 
+    //Oppgave 6
     @Override
     public boolean fjern(T verdi) {
-        throw new NotImplementedException();
+        //Denne skal fjerne verdi fra lista og returnere true
+        //hvis verdi ikke er i lista, skal metoden returnere false
+        //Variabel antall skal reduseres og endringer skal økes
+        //pass på at tilfellet blir behandlet riktig hvis lista blir tom.
+
+
+        if(tom()){
+            return false;
+        }
+
+        else if(antall == 1 && hode.verdi.equals(verdi)){
+            hode = hale = null;
+            antall--;
+            endringer++;
+            return true;
+        }
+
+        else {
+            Node<T> q = hode;
+
+            for (int i = 0; i < antall; i++) {
+                if (q.verdi.equals(verdi)) {
+                    Node<T> p = q.forrige;
+                    Node<T> r = q.neste;
+
+                    //1. tilfelle: den første fjernes
+                    if (q == hode) {
+                        r.forrige = null;
+                        hode = r;
+                    }
+
+                    //2. tilfelle: den siste fjernes
+                    else if (q == hale) {
+                        p.neste = null;
+                        hale = p;
+                    }
+
+                    //3. tilfelle: en verdi mellom to andre fjernes
+                    else {
+                        p.neste = r;
+                        r.forrige = p;
+                    }
+
+                    antall--;
+                    endringer++;
+
+                    return true;
+                }
+                q = q.neste;
+            }
+            return false;
+        }
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new NotImplementedException();
+        //Denne skal fjerne og returnere verdien på posisjon indeks.
+        //Obs: denne må først sjekkes
+        //Variabel antall skal reduseres og endringer skal økes
+        //pass på at tilfellet blir behandlet riktig hvis lista blir tom.
+
+        if(tom()){
+            throw new IndexOutOfBoundsException("Tom liste!");
+        }
+
+        else if(indeks < 0 || indeks >= antall){
+            throw new IndexOutOfBoundsException("Nei.");
+        }
+
+        else {
+            Node<T> q = finnNode(indeks);
+            Node<T> p = q.forrige;
+            Node<T> r;
+
+            //1a. tilfelle: den første fjernes og det er bare et element i listen
+            if(antall == 1 && indeks == 0){
+                hode = hale = null;
+            }
+
+            //1b. tilfelle: den første fjernes
+            else if (indeks == 0) {
+                r = q.neste;
+                r.forrige = null;
+                hode = r;
+            }
+
+            //2. tilfelle: den siste fjernes
+            else if (indeks == (antall - 1)) {
+                p.neste = null;
+                hale = p;
+            }
+
+            //3. tilfelle: en verdi mellom to andre fjernes
+            else {
+                r = q.neste;
+                p.neste = r;
+                r.forrige = p;
+            }
+
+            antall--;
+            endringer++;
+
+            return q.verdi;
+        }
     }
 
     @Override
