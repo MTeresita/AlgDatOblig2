@@ -265,6 +265,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void nullstill() {
         Node<T> node = hode;
+        Node<T> temp;
 
         //1. måte: Start i ​hode​ og gå mot ​hale​ ved hjelpe pekeren ​neste.​ For hver node «nulles»
         // nodeverdien og alle nodens pekere. Til slutt settes både ​hode​ og ​hale​ til null, ​antall​
@@ -272,11 +273,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // i kildekodenformetoden​clear(​)​iklassen​LinkedList​iJava.
 
         for(int i = 0; i < antall; i++){
+            temp = node.neste;
             node.verdi = null;
             node.neste = null;
             node.forrige = null;
+            node = temp;
         }
         hode = hale = null;
+        antall = 0;
+        endringer++;
     }
 
     //Oppg 2a)
