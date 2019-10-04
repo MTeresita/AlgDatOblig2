@@ -234,14 +234,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> node = hode;
 
         while (node != null) {
-            if(node.verdi == null){
-                System.out.println("Første node i listen er tom.");
-            }
-            else {
+            if(node.verdi != null){
                 if (node.neste == null) {
                     sb.append(node.verdi);
-                }
-                else {
+                } else {
                     sb.append(node.verdi).append(", "); //legger videre til de neste elementene.
                 }
             }
@@ -266,10 +262,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> node = hale;
 
         while(node != null){
-            if(node.verdi == null){
-                System.out.println("Første node i listen er tom.");
-            }
-            else {
+            if(node.verdi != null){
                 if (node.forrige == null || node.forrige.verdi == null) {
                     sb.append(node.verdi);
                 }
