@@ -38,4 +38,4 @@ public class Main {
         System.out.println(pokedex.indeksTil("Arcanine"));
         System.out.println(liste2.indeksTil(4));
     }
-}// halloooooo???
+}
