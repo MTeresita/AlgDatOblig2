@@ -130,14 +130,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
 
             //2. verdien skal legges først - forrigepeker = null
-            if (indeks == 0) {
+            else if (indeks == 0) {
                 node.neste = hode;
                 hode.forrige = node;
                 hode = node;
             }
 
             //3. verdien skal legges bakerst - nestepeker = null
-            if (indeks == antall) {
+            else if (indeks == antall) {
                 node.forrige = hale;
                 hale.neste = node;
                 hale = node;
