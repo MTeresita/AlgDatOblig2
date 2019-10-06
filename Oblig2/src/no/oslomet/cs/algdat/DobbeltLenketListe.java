@@ -317,7 +317,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //pass på at tilfellet blir behandlet riktig hvis lista blir tom.
 
         if(tom()){
-            throw new IndexOutOfBoundsException("Tom liste!");
+            throw new IndexOutOfBoundsException("Tom liste!"); //TODO: lista skal kunne være tome, så denne må vi gjøre noe med!
         }
 
         else if(indeks < 0 || indeks >= antall){
