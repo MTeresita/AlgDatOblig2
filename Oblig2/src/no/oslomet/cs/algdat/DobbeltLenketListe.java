@@ -67,14 +67,49 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
+    private static void fratilKontroll(int antall, int fra, int til){
+        // sjekkes om indeksene fra og til er lovlige - hvis ikke skal det kastes unntak (fratilkontroll())
+        // bytt ut AIOB exception med IOOB excpetion siden vi ikke har noe array tabell her
+        // bytt ut ordet tablengde med ordet antall (kalles med antall, fra og til som argumenter)
+        if(fra < 0){
+            throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
+        }
+
+        if(til > antall){
+            throw new IndexOutOfBoundsException("til(" + til +") > antall ("+ antall + ")");
+        }
+
+        if(fra > til){
+            throw new IllegalArgumentException("fra(" + fra + ") > til "+til+ ") - illegalt intervall");
+        }
+    }
+
     public Liste<T> subliste(int fra, int til){
-        throw new NotImplementedException();
+        // returnere en liste som inneholder verdiene fra intervallet
+        // tomt intervall er lovlig - får en tom liste
+        // endringer skal være 0
+        fratilKontroll(antall,fra,til);
+        DobbeltLenketListe<T> subliste = new DobbeltLenketListe<>();
+
+        if(tom()){
+            antall();
+        }
+        else{
+            for(int i = fra; i < til; i++){
+                T verdi = hent(i);
+                subliste.leggInn(verdi);
+
+            }
+        }
+        endringer = 0;
+        return subliste;
     }
 
     @Override
     public int antall() {
        return antall;
     }
+
     @Override
     public boolean tom() {
         if (antall == 0 ){

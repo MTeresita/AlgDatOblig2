@@ -98,5 +98,16 @@ public class Main {
                     ("Oppgave 6ze: Her må det være en pekerfeil!");
         }
 
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("Oppg. 3b");
+
+        Character[] c = {'A','B','C','D','E','F','G','H','I','J',};
+        DobbeltLenketListe<Character> listeC = new DobbeltLenketListe<>(c);
+        System.out.println(listeC.subliste(3,8));   // [D,E,F,G,H]
+        System.out.println(listeC.subliste(5,5));  // []
+        System.out.println(listeC.subliste(8,listeC.antall())); // [I,J]
+        System.out.println(listeC.subliste(0,11)); // skal kaste unntak
+
+
     }
 }
