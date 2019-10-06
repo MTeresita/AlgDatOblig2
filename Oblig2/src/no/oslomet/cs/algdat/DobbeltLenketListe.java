@@ -493,8 +493,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //bruke ny konstruktør og returnere en instans av iteratorklassen
 
         indeksKontroll(indeks, false);
-        DobbeltLenketListeIterator listeIterator = new DobbeltLenketListeIterator(indeks);
-        return listeIterator;
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -520,7 +519,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override       
         public boolean hasNext(){
             //FIXME : Sikker på at det ikke skal være denne.neste??
-            return denne.neste != null;
+            return denne != null;
         }
 
         @Override
@@ -537,14 +536,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
             }
 
-            denne = denne.neste;
             fjernOK = true;
+            denne = denne.neste;
             return denne.verdi;
         }
 
         @Override
         public void remove(){
-
+            //FIXME : Denne finner elementet og fjerner basert på at "denne" er elementet som skal fjernes. I følge hasNext() er det ikke hva den spør om.
             if(!fjernOK){
                 throw new IllegalStateException("Ulovlig tilstand!");
             }
