@@ -484,11 +484,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new NotImplementedException();
+        DobbeltLenketListeIterator iterator = new DobbeltLenketListeIterator();
+        return iterator;
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new NotImplementedException();
+        //Sjekk lovlig indeks, indekskontroll
+        //bruke ny konstruktør og returnere en instans av iteratorklassen
+
+        indeksKontroll(indeks, false);
+        DobbeltLenketListeIterator listeIterator = new DobbeltLenketListeIterator(indeks);
+        return listeIterator;
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -503,17 +509,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks){
-            throw new NotImplementedException();
+            //Sette "denne" til noden som hører til den oppgitte indeksen
+            //Resten skal være likt som konstruktøren over.
+
+            denne = finnNode(indeks);
+            fjernOK = false;
+            iteratorendringer = endringer;
         }
 
         @Override       
         public boolean hasNext(){
-            return denne != null;
+            //FIXME : Sikker på at det ikke skal være denne.neste?? 
+            return denne.neste != null;
         }
 
         @Override
         public T next(){
-            throw new NotImplementedException();
+            //Sjekke om iteratorendringer er lik endringe, kaste Exception
+            //Om det hasNext() er false, er det ikke flere elementer i listen og det skal kastes noSuchElementException
+            //Setter fjernOk til true
+            //"denne" returneres og "denne" flyttes til neste node
+
+            if(iteratorendringer != endringer){
+                throw new ConcurrentModificationException("Feil i antall endringer.");
+            }
+            else if(!hasNext()){
+                throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
+            }
+
+            denne = denne.neste;
+            fjernOK = true;
+            return denne.verdi;
         }
 
         @Override

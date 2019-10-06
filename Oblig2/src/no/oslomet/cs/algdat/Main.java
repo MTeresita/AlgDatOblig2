@@ -65,7 +65,7 @@ public class Main {
         halla.fjern(0);
         System.out.println("Etter fjerning:");
         System.out.println(halla.toString());
-        System.out.println(halla.omvendtString());*/
+        System.out.println(halla.omvendtString());
 
 
         //Oppgave 6:
@@ -108,6 +108,13 @@ public class Main {
         System.out.println(listeC.subliste(8,listeC.antall())); // [I,J]
         System.out.println(listeC.subliste(0,11)); // skal kaste unntak
 
+        */
+
+        String[] navn = {"Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
+        Liste<String> liste = new DobbeltLenketListe<>(navn);
+        liste.forEach(s -> System.out.print(s + " "));  //Denne skriver ut
+        System.out.println();
+        for(String s : liste) System.out.print(s + " ");
 
     }
 }
