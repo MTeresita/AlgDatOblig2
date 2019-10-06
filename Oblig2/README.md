@@ -10,8 +10,13 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Maria har jobbet på oppgave 
-* Signe har har jobbet på oppgave 
-* Camilla har jobbet på oppgave 
-* Ana-Maria har jobbet på oppgave 
+* Maria har jobbet på oppgave 1, 2a, 4,
+* Signe har jobbet på oppgave 2a, 2b 3a, 5, 6, 7, 8, 9
+* Camilla har jobbet på oppgave 1, 2a, 2b, 3b, 5, 6, 8, 9
+* Ana-Maria har jobbet på oppgave 1, 2a, 3a, 3b, 8, 9
 
+* Dette står igjen: *
+- Oppgave 3, par punkter i testen, ikke i main
+- Oppgave 8, begynt - funker ikke i testen
+- Oppgave 9, begynt - sletter den til venstre, spurt om svar
+- Oppgave 10, ikke begynt

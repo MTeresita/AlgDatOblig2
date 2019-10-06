@@ -108,13 +108,19 @@ public class Main {
         System.out.println(listeC.subliste(8,listeC.antall())); // [I,J]
         System.out.println(listeC.subliste(0,11)); // skal kaste unntak
 
-        */
 
+        //Oppgave 8:
         String[] navn = {"Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
         Liste<String> liste = new DobbeltLenketListe<>(navn);
         liste.forEach(s -> System.out.print(s + " "));  //Denne skriver ut
         System.out.println();
         for(String s : liste) System.out.print(s + " ");
+        */
 
+        //Oppgave 9:
+        String [] navnListe = new String [] {"Birger", "Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
+        DobbeltLenketListe<String> liste = new DobbeltLenketListe<>(navnListe);
+        liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // Fjerner navn som starter med B
+        System.out.println(liste + " " + liste.omvendtString());
     }
 }

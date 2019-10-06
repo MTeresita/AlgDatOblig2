@@ -519,7 +519,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override       
         public boolean hasNext(){
-            //FIXME : Sikker på at det ikke skal være denne.neste?? 
+            //FIXME : Sikker på at det ikke skal være denne.neste??
             return denne.neste != null;
         }
 
@@ -544,7 +544,45 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove(){
-            throw new NotImplementedException();
+
+            if(!fjernOK){
+                throw new IllegalStateException("Ulovlig tilstand!");
+            }
+            if(endringer != iteratorendringer){
+                throw new ConcurrentModificationException("Feil i antall endringer.");
+            }
+
+            fjernOK = false;
+            denne = denne.neste;
+            Node<T> node = denne.forrige;  //Denne skal fjernes!!
+
+            //4 Tilfeller:
+            //1. antall == 1, nulles hode og hale
+            if(antall == 1){
+                hode = hale = null;
+            }
+
+            //2. siste element i listen, denne == null, hale oppdateres
+            else if(denne == null){
+                hale = node.forrige;
+                node.forrige.neste = null;
+            }
+
+            //3. første skal fjernes, denne.forrige == hode, hodet må oppdateres
+            else if(denne.forrige == hode){
+                hode = denne;
+                denne.forrige = null;
+            }
+
+            //4. Midt i listen (node denne.forrige) så må pekerne på hver sin side oppdateres.
+            else{
+                denne.forrige = node.forrige;
+                node.forrige.neste = denne;
+            }
+
+            antall--;
+            endringer++;
+            iteratorendringer++;
         }
 
     } // class DobbeltLenketListeIterator
