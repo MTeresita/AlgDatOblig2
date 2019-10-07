@@ -52,13 +52,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
         //Hvis a er 0, så skal det kastet en NullPointerException
-        //Objects.requireNonNull(a,"Tabellen a er null!");
+        Objects.requireNonNull(a,"Tabellen a er null!");
 
         hode = hale = new Node<>(null); // oppretter en midlertig node.
+        int teller = 0;
 
         for (T verdi : a) {
             if (verdi != null) {
-                hale = hale.neste = new Node<>(verdi, hale, null); // ny verdi legges bakerst
+                if(teller == 0){
+                    hode = hale = hale.neste = new Node<>(verdi, hale, null);
+                    teller++;
+                }
+                else {
+                    hale = hale.neste = new Node<>(verdi, hale, null); // ny verdi legges bakerst
+                }
                 antall++;
             }
             if (tom()) {
@@ -356,7 +363,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         else if(indeks < 0 || indeks >= antall){
-            throw new IndexOutOfBoundsException("Nei.");
+            throw new IndexOutOfBoundsException("Ikke gyldig indeks.");
         }
 
         else {
@@ -365,7 +372,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             Node<T> r;
 
             //1a. tilfelle: den første fjernes og det er bare et element i listen
-            if(antall == 1 && indeks == 0){
+            if(antall == 1){
                 hode = hale = null;
             }
 
@@ -518,7 +525,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override       
         public boolean hasNext(){
-            //FIXME : Sikker på at det ikke skal være denne.neste??
             return denne != null;
         }
 
@@ -536,9 +542,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
             }
 
+            T tempverdi = denne.verdi;
             fjernOK = true;
             denne = denne.neste;
-            return denne.verdi;
+            return tempverdi;
         }
 
         @Override
