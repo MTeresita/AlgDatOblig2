@@ -44,18 +44,26 @@ public class Main {
         Integer[] poop= {3,4,6,7,8,9,0,1,2,3,4};
         Liste<Integer> liste3 = new DobbeltLenketListe<>(poop);
         System.out.println("Oppgave 3:");
-//        int verdi = liste3.hent(0);
-  //      System.out.println("Verdi av indeks 0 : "+verdi);
+        int verdi = liste3.hent(4);
+        System.out.println("Verdi av indeks 4 : "+verdi);
 
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
+
+        liste.leggInn(1);
+        liste.leggInn(2);
+        liste.leggInn(3);
+        liste.leggInn(4);
+        System.out.println(liste.toString());
+        System.out.println(liste.hent(3));
+*/
         //Oppgave 4
-//        System.out.println("------------------");
-//        System.out.println("Oppgave 4");
-//        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
-//        String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
-//        DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
-//        System.out.println(pokedex.indeksTil("Arcanine"));
-//        System.out.println(liste3.indeksTil(4));
-
+        System.out.println("------------------");
+        System.out.println("Oppgave 4");
+        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
+        String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
+        DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
+        System.out.println(pokedex.indeksTil("Arcanine"));
+/*
         //Oppgave 6
        System.out.println("------------------");
         System.out.println("Oppgave 6");
@@ -126,7 +134,7 @@ public class Main {
         DobbeltLenketListe<String> liste = new DobbeltLenketListe<>(navnListe);
         liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // Fjerner navn som starter med B
         System.out.println(liste + " " + liste.omvendtString());
-        */
+
 
         // Oppgave 10:
         String[] navn2 = {"Lars","Anders","Bodil","Kari","Per","Berit"};
@@ -136,5 +144,6 @@ public class Main {
         DobbeltLenketListe.sorter(listeS, Comparator.naturalOrder()); // [Anders,Berit,Bodil,Kari,Lars,Per]
         System.out.println(listeS);
         System.out.println(Arrays.toString(navn2)); // tabellen navn2 er upåvirket
+        */
     }
 }

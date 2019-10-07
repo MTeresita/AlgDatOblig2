@@ -129,10 +129,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        if(verdi == null){ //Sjekker etter null-verdier
-            Objects.requireNonNull(verdi, "Kan ikke legge til tomme verdier.");
-            return false;
-        }
+        Objects.requireNonNull(verdi, "Kan ikke legge til tomme verdier.");
 
         Node node = new Node(verdi);
 
@@ -143,8 +140,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Tilfelle 2: listen er ikke tom
         else{
-            node.forrige = hale;
             hale.neste = node;
+            node.forrige = hale;
             hale = node;
         }
         antall++;
@@ -221,6 +218,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         int midten = antall / 2;
         Node<T> p = hode;
         Node<T> q = hale;
+        Node<T> temp = hode;
 
         if(antall == 1){
             return p; //Kun et element, returnerer her hodet (kunne vært hale også, men de er jo det samme..)
@@ -228,18 +226,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Hvis indeks er høyere enn midten - så skal man starte fra halen og gå mot venstre, bruke forrige-pekere
         else if(indeks > midten){
-            for(int i = antall-1; i > indeks; i--){
+            for(int i = antall-1; i >= indeks; i--){
+                temp = q;
                 q = q.forrige;
             }
-            return q;
+            return temp;
         }
 
         //Hvis indeks er mindre eller lik midten - så skal letingen starte fra hodet og gå mot høyre, bruke neste-pekere
         else{
             for(int i = 0; i <= indeks; i++){
+                temp = p;
                 p = p.neste;
             }
-            return p;
+            return temp;
         }
     }
 
