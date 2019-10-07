@@ -294,14 +294,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return temp;
     }
 
-    //Oppgave 6
     @Override
     public boolean fjern(T verdi) {
         //Denne skal fjerne verdi fra lista og returnere true
         //hvis verdi ikke er i lista, skal metoden returnere false
         //Variabel antall skal reduseres og endringer skal økes
         //pass på at tilfellet blir behandlet riktig hvis lista blir tom.
-
 
         if(tom()){
             return false;
@@ -557,10 +555,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(endringer != iteratorendringer){
                 throw new ConcurrentModificationException("Feil i antall endringer.");
             }
+            if(!hasNext()){
+                throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
+            }
 
             fjernOK = false;
+            Node<T> temp = denne;
             denne = denne.neste;
-            Node<T> node = denne.forrige;  //Denne skal fjernes!!
 
             //4 Tilfeller:
             //1. antall == 1, nulles hode og hale
@@ -570,20 +571,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             //2. siste element i listen, denne == null, hale oppdateres
             else if(denne == null){
-                hale = node.forrige;
-                node.forrige.neste = null;
+                System.out.println("HAllo??");
+                hale = temp.forrige;
+                hale.neste = null;
             }
 
             //3. første skal fjernes, denne.forrige == hode, hodet må oppdateres
             else if(denne.forrige == hode){
-                hode = denne;
-                denne.forrige = null;
+                temp.neste = hode;
+                hode.forrige = null;
             }
 
-            //4. Midt i listen (node denne.forrige) så må pekerne på hver sin side oppdateres.
+            //4. Midt i listen, så må pekerne på hver sin side oppdateres.
             else{
-                denne.forrige = node.forrige;
-                node.forrige.neste = denne;
+                Node<T> node = temp.forrige;
+                denne.forrige = node;
+                node.neste = denne;
             }
 
             antall--;

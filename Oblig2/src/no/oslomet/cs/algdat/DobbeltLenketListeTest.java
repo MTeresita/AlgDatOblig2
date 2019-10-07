@@ -1165,6 +1165,7 @@ class DobbeltLenketListeTest {
             int verdi = i.next();
             if (verdi % 2 == 1) {
                 i.remove(); // fjerner oddetallene
+                System.out.println(verdi + ", ");
             }
         }
 

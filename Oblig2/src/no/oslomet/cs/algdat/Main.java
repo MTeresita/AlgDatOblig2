@@ -55,15 +55,14 @@ public class Main {
         liste.leggInn(4);
         System.out.println(liste.toString());
         System.out.println(liste.hent(3));
-*/
+
         //Oppgave 4
         System.out.println("------------------");
         System.out.println("Oppgave 4");
-        //FIXME fikk den til å funke i testen .. tester jeg den feil her?
         String [] s4 = {"Bulbasaur","Arcanine", "Articuno", "Squirtle","Charizard", "Pikachu", "Articuno"};
         DobbeltLenketListe<String> pokedex = new DobbeltLenketListe<>(s4);
         System.out.println(pokedex.indeksTil("Arcanine"));
-/*
+
         //Oppgave 6
        System.out.println("------------------");
         System.out.println("Oppgave 6");
@@ -78,36 +77,6 @@ public class Main {
         System.out.println(halla.toString());
         System.out.println(halla.omvendtString());
 
-
-        //Oppgave 6:
-        DobbeltLenketListe<String> liste = new DobbeltLenketListe<>();
-        liste.leggInn("A");
-        liste.leggInn("B");
-
-        try {
-            liste.fjern(1);
-        } catch (Exception e) {
-            System.out.println("Oppgave 6za: Her kastes det et unntak, men det skal ikke skje!!");
-        }
-
-        if (!liste.toString().equals("[A]")) {
-            System.out.println
-                    ("Oppgave 6zb: Her må det være en pekerfeil!");
-        }
-
-        liste.leggInn("B");
-
-        try {
-            liste.fjern("B");
-        } catch (Exception e) {
-            System.out.println
-                    ("Oppgave 6zd: Her kastes det et unntak, men det skal ikke skje!!");
-        }
-
-        if (!liste.toString().equals("[A]")) {
-            System.out.println
-                    ("Oppgave 6ze: Her må det være en pekerfeil!");
-        }
 
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("Oppg. 3b");
@@ -129,12 +98,12 @@ public class Main {
         */
 
         //Oppgave 9:
-        /*
+
         String [] navnListe = new String [] {"Birger", "Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
         DobbeltLenketListe<String> liste = new DobbeltLenketListe<>(navnListe);
-        liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // Fjerner navn som starter med B
+        liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // Fjerner navn som starter på B
         System.out.println(liste + " " + liste.omvendtString());
-
+/*
 
         // Oppgave 10:
         String[] navn2 = {"Lars","Anders","Bodil","Kari","Per","Berit"};
