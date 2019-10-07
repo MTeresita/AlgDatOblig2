@@ -18,5 +18,6 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Dette står igjen: *
 - Oppgave 3, par punkter i testen, ikke i main
 - Oppgave 8, begynt - funker ikke i testen
+- Oppgave 6, kastes unntak i testen - pekerfeil?
 - Oppgave 9, begynt - sletter den til venstre, spurt om svar
 - Oppgave 10, ikke begynt

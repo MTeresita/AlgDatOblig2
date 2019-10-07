@@ -587,6 +587,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
+        // sortere 'liste' vha komparatoren c
+        // kun metodene fra grensesnittet Liste som kan brukes
+        // skal løses uten hjelpestrukturer - "på plass" sortering,
+        // m.a.o: ikke kopiere verdiene over i en tabell og sortere, for så å kopiere dem tilbake
+        //
         throw new NotImplementedException();
     }
 
