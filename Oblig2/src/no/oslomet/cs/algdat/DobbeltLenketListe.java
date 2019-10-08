@@ -1,5 +1,12 @@
 package no.oslomet.cs.algdat;
 
+/* Gruppemedlemmer:
+   s333745 - Ana-Maria Poljac
+   s333783 - Camilla Hoelgaard
+   s333781 - Signe Aanderaa Eide
+   s326325 - Maria Teresita Halvorsen
+ */
+
 
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
