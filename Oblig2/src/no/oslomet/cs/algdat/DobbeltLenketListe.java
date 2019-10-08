@@ -595,8 +595,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // kun metodene fra grensesnittet Liste som kan brukes
         // skal løses uten hjelpestrukturer - "på plass" sortering,
         // m.a.o: ikke kopiere verdiene over i en tabell og sortere, for så å kopiere dem tilbake
-        //
-        throw new NotImplementedException();
+
+        // To elementer til å sammenligne
+        T elem1;
+        T elem2;
+
+        int teller = 1;
+
+        while(teller != 0) {
+            teller = 0;
+
+            for (int i = 0; i < liste.antall() - 1; i++) {
+                elem1 = liste.hent(i);
+                elem2 = liste.hent(i + 1);
+
+                // hvis første element er "større" enn elementet det sammenlignes med, så returneres en verdi høyere enn 0
+                if (c.compare(elem1,elem2) > 0) {
+                    teller++;
+                    // bytter plass på elementene
+                    liste.oppdater(i, elem2);
+                    liste.oppdater(i+1,elem1);
+                }
+            }
+        }
     }
 
 } // class DobbeltLenketListe

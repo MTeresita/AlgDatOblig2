@@ -99,20 +99,20 @@ public class Main {
 
         //Oppgave 9:
 
-        String [] navnListe = new String [] {"Birger", "Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
+        String[] navnListe = new String[]{"Birger", "Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
         DobbeltLenketListe<String> liste = new DobbeltLenketListe<>(navnListe);
         liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // Fjerner navn som starter på B
         System.out.println(liste + " " + liste.omvendtString());
-/*
+
 
         // Oppgave 10:
-        String[] navn2 = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+        String[] navn2 = {"Lars", "Anders", "Bodil", "Kari", "Per", "Berit"};
 
         Liste<String> listeS = new DobbeltLenketListe<>(navn2);
 
         DobbeltLenketListe.sorter(listeS, Comparator.naturalOrder()); // [Anders,Berit,Bodil,Kari,Lars,Per]
         System.out.println(listeS);
         System.out.println(Arrays.toString(navn2)); // tabellen navn2 er upåvirket
-        */
+
     }
 }
