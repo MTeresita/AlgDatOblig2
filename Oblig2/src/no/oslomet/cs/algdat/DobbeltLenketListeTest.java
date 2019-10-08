@@ -1192,8 +1192,6 @@ class DobbeltLenketListeTest {
             j.remove();
         }
 
-        System.out.println("Liste : "+liste.toString());
-        System.out.println("Liste omvendt : "+liste.omvendtString());
         if (!liste.toString().equals("[]")) {
             antallFeil++;
             System.out.println("Oppgave 9d: Feil når remove() har slettet alle!");

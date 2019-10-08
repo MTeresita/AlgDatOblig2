@@ -573,7 +573,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             else if(temp == hode){
                 denne.forrige = null;
                 hode = denne;
-                denne = denne.neste;
             }
 
             //4. Midt i listen, så må pekerne på hver sin side oppdateres.
