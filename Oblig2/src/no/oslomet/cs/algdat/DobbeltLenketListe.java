@@ -502,7 +502,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
-        private Node<T> denne;
+        private Node<T> denne, temp;
         private boolean fjernOK;
         private int iteratorendringer;
 
@@ -540,28 +540,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
             }
 
-            T tempverdi = denne.verdi;
+            temp = denne;
             fjernOK = true;
             denne = denne.neste;
-            return tempverdi;
+            return temp.verdi;
         }
 
         @Override
         public void remove(){
-            //FIXME : Denne finner elementet og fjerner basert på at "denne" er elementet som skal fjernes. I følge hasNext() er det ikke hva den spør om.
             if(!fjernOK){
                 throw new IllegalStateException("Ulovlig tilstand!");
             }
             if(endringer != iteratorendringer){
                 throw new ConcurrentModificationException("Feil i antall endringer.");
             }
-            if(!hasNext()){
-                throw new NoSuchElementException("Ikke flere elementer igjen i listen.");
-            }
 
             fjernOK = false;
-            Node<T> temp = denne;
-            denne = denne.neste;
 
             //4 Tilfeller:
             //1. antall == 1, nulles hode og hale
@@ -571,15 +565,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             //2. siste element i listen, denne == null, hale oppdateres
             else if(denne == null){
-                System.out.println("HAllo??");
                 hale = temp.forrige;
                 hale.neste = null;
             }
 
             //3. første skal fjernes, denne.forrige == hode, hodet må oppdateres
-            else if(denne.forrige == hode){
-                temp.neste = hode;
-                hode.forrige = null;
+            else if(temp == hode){
+                denne.forrige = null;
+                hode = denne;
+                denne = denne.neste;
             }
 
             //4. Midt i listen, så må pekerne på hver sin side oppdateres.
@@ -587,6 +581,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 Node<T> node = temp.forrige;
                 denne.forrige = node;
                 node.neste = denne;
+                denne = denne.neste;
             }
 
             antall--;
